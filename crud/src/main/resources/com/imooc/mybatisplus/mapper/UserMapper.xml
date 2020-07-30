@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace，命名空间必须和Dao接口一样 -->
+<mapper namespace="com.imooc.mybatisplus.dao.UserMapper">
+    <!-- 查询所有 -->
+    <select id="selectAll" resultType="User">
+        select * from mp_user ${ew.customSqlSegment}
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="selectUserPage" resultType="User">
+        select * from mp_user ${ew.customSqlSegment}
+    </select>
+</mapper>

@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: crud
+  #配置数据库
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mp?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: hezihao123
+
+#配置Log打印
+logging:
+  level:
+    root: warn
+    com.imooc.mybatisplus: trace
+  pattern:
+    console: '%p%m%n'
+
+mybatis-plus:
+  #配置mapper文件的位置，注意，如果你是maven多模块下使用，路径前需要加classpath*，即加载多个jar包下的xml文件
+  mapper-locations:
+    - classpath*:com/imooc/mybatisplus/mapper/*
+  global-config:
+    db-config:
+      #全局id策略
+      id-type: id_worker
+      #字段生成sql的where策略，默认实体中的字段为null时，不添加到sql中，如果想为null，也添加到sql语句中，则使用ignored
+      #一般不设置为ignored，因为在update语句中，如果不设置值，就会用null覆盖掉原有的值。一般我们是希望设置值的才更新，为null则不更新
+      #not_empty，如果字段值为null或者空字符串，会忽略掉，不添加到sql语句中
+      field-strategy: default
+      #统一表名前缀
+      #table-prefix: mp_
+      #数据库表是否使用下划线间隔命名，默认为true
+      table-underline: true
+  #传统的mybatis配置文件位置
+  #config-location: classpath:mybatis-config.xml
+  #实体别名包配置
+  type-aliases-package: com.imooc.mybatisplus.entity
+  #注意configuration不能和config-location同时出现，不然会报错
+  configuration:
+    #驼峰转下划线（实体类用驼峰，数据库表字段用下划线），默认为true
+    map-underscore-to-camel-case: true
